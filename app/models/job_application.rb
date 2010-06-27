@@ -1,5 +1,3 @@
-require 'paperclip'
-  
 class JobApplication < ActiveRecord::Base
   HUMANIZED_COLLUMNS = {:resume_file_name => "Resume"}
 
@@ -14,7 +12,10 @@ class JobApplication < ActiveRecord::Base
 
 
 
-  has_attached_file :resume
-  validates_attachment_presence :resume
-  # validates_attachment_content_type :resume, :content_type => ['application/pdf', 'image/jpg', 'application/msword', 'application/doc', 'appl/text', 'application/word', 'application/x-msword']
+  has_attachment :storage => (Refinery.s3_backend ? :s3 : :file_system),
+                 :max_size => 10.megabytes,
+                 :path_prefix => (Refinery.s3_backend ? nil : 'public/system/resume')
+  def resume
+    self.public_filename
+  end
 end

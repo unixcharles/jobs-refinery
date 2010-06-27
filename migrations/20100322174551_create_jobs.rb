@@ -21,10 +21,11 @@ class CreateJobs < ActiveRecord::Migration
       t.string :phone
       t.string :email
       t.text :cover_letter
-      t.string :resume_file_name
-      t.string :resume_content_type
-      t.integer :resume_file_size
-      t.datetime :resume_updated_at
+
+      t.integer :size
+      t.string :content_type
+      t.string :filename
+
       t.timestamps
     end
 

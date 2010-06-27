@@ -9,7 +9,7 @@ Email: <%= @job_application.email %><BR>
 Phone: <%= @job_application.phone %><BR>
 Job:<%= @job_application.job.job_title %><BR>
 Cover Letter:<%= @job_application.cover_letter %><BR>
-Resume:<%=  link_to @job_application.resume.url, 'Click here to download the resume' %><BR>
+Resume:<%=  link_to @job_application.public_filename, 'Click here to download the resume' if @job_application.public_filename %><BR>
 <BR>
 --- inquiry ends ---<BR>
 <BR>
